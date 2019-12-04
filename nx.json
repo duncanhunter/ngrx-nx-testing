@@ -1,0 +1,21 @@
+{
+  "npmScope": "ngrx-workspace",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "demo-ngrx-e2e": {
+      "tags": []
+    },
+    "demo-ngrx": {
+      "tags": []
+    },
+    "shared-data-access-auth": {
+      "tags": ["scope:shared", "type:data-access"]
+    }
+  }
+}
