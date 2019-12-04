@@ -5,7 +5,7 @@ export const loadAuth = createAction('[Auth] Load Auth');
 
 export const authLoadError = createAction(
   '[Auth] Auth Load Error',
-  props<{ error: any }>()
+  props<{ error: string }>()
 );
 
 export const authLoaded = createAction(
