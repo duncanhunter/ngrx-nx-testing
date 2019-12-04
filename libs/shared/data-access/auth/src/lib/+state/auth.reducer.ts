@@ -36,3 +36,10 @@ const userReducer = createReducer(
 export function reducer(state: AuthState | undefined, action: Action) {
   return userReducer(state, action);
 }
+
+export const {
+  selectIds,
+  selectEntities,
+  selectAll,
+  selectTotal
+} = adapter.getSelectors();
