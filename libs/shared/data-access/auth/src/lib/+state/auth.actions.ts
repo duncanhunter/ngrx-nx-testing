@@ -1,30 +1,20 @@
-import { Action } from '@ngrx/store';
-import { Entity } from './auth.reducer';
+import { createAction, props } from '@ngrx/store';
+import { User } from './auth.reducer';
 
-export enum AuthActionTypes {
-  LoadAuth = '[Auth] Load Auth',
-  AuthLoaded = '[Auth] Auth Loaded',
-  AuthLoadError = '[Auth] Auth Load Error'
-}
+export const loadAuth = createAction('[Auth] Load Auth');
 
-export class LoadAuth implements Action {
-  readonly type = AuthActionTypes.LoadAuth;
-}
+export const authLoadError = createAction(
+  '[Auth] Auth Load Error',
+  props<{ error: any }>()
+);
 
-export class AuthLoadError implements Action {
-  readonly type = AuthActionTypes.AuthLoadError;
-  constructor(public payload: any) {}
-}
-
-export class AuthLoaded implements Action {
-  readonly type = AuthActionTypes.AuthLoaded;
-  constructor(public payload: Entity[]) {}
-}
-
-export type AuthAction = LoadAuth | AuthLoaded | AuthLoadError;
+export const authLoaded = createAction(
+  '[Auth] Auth Loaded',
+  props<{ users: User[] }>()
+);
 
 export const fromAuthActions = {
-  LoadAuth,
-  AuthLoaded,
-  AuthLoadError
+  loadAuth,
+  authLoaded,
+  authLoadError
 };

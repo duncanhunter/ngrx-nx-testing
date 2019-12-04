@@ -1,4 +1,4 @@
-import { Entity, AuthState } from './auth.reducer';
+import { User, AuthState } from './auth.reducer';
 import { authQuery } from './auth.selectors';
 
 describe('Auth Selectors', () => {
@@ -8,7 +8,7 @@ describe('Auth Selectors', () => {
   let storeState;
 
   beforeEach(() => {
-    const createAuth = (id: string, name = ''): Entity => ({
+    const createAuth = (id: string, name = ''): User => ({
       id,
       name: name || `name-${id}`
     });

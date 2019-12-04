@@ -1,46 +1,38 @@
-import { AuthAction, AuthActionTypes } from './auth.actions';
+import { createReducer, on, Action } from '@ngrx/store';
+import { EntityState, createEntityAdapter, EntityAdapter } from '@ngrx/entity';
+
+import { fromAuthActions } from './auth.actions';
 
 export const AUTH_FEATURE_KEY = 'auth';
+export interface User {
+  id: string;
+  name: string;
+}
 
-/**
- * Interface for the 'Auth' data used in
- *  - AuthState, and the reducer function
- *
- *  Note: replace if already defined in another module
- */
-
-/* tslint:disable:no-empty-interface */
-export interface Entity {}
-
-export interface AuthState {
-  list: Entity[]; // list of Auth; analogous to a sql normalized table
-  selectedId?: string | number; // which Auth record has been selected
-  loaded: boolean; // has the Auth list been loaded
-  error?: any; // last none error (if any)
+export interface AuthState extends EntityState<User> {
+  selectedId?: string;
+  loaded: boolean;
+  error?: any;
 }
 
 export interface AuthPartialState {
   readonly [AUTH_FEATURE_KEY]: AuthState;
 }
 
-export const initialState: AuthState = {
-  list: [],
-  loaded: false
-};
+export const adapter: EntityAdapter<User> = createEntityAdapter<User>();
 
-export function reducer(
-  state: AuthState = initialState,
-  action: AuthAction
-): AuthState {
-  switch (action.type) {
-    case AuthActionTypes.AuthLoaded: {
-      state = {
-        ...state,
-        list: action.payload,
-        loaded: true
-      };
-      break;
-    }
-  }
-  return state;
+export const initialState: AuthState = adapter.getInitialState({
+  selectedId: null,
+  loaded: false
+});
+
+const userReducer = createReducer(
+  initialState,
+  on(fromAuthActions.authLoaded, (state, { users }) =>
+    adapter.addAll(users, { ...state, loaded: true })
+  )
+);
+
+export function reducer(state: AuthState | undefined, action: Action) {
+  return userReducer(state, action);
 }
