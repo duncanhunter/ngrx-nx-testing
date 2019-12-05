@@ -44,5 +44,6 @@ export const authQuery = {
   getLoaded,
   getError,
   getAllAuth,
-  getSelectedAuth
+  getSelectedAuth,
+  getSelectedId
 };
