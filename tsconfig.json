@@ -18,6 +18,9 @@
     "paths": {
       "@ngrx-workspace/shared/data-access/auth": [
         "libs/shared/data-access/auth/src/index.ts"
+      ],
+      "@ngrx-workspace/ngrx-demo/auth/feature-login": [
+        "libs/ngrx-demo/auth/feature-login/src/index.ts"
       ]
     }
   },
