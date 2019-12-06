@@ -16,6 +16,9 @@
     },
     "shared-data-access-auth": {
       "tags": ["scope:shared", "type:data-access"]
+    },
+    "ngrx-demo-auth-feature-login": {
+      "tags": ["scope:ngrx-demo", "type:feature"]
     }
   }
 }

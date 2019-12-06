@@ -157,6 +157,40 @@
           "styleext": "scss"
         }
       }
+    },
+    "ngrx-demo-auth-feature-login": {
+      "projectType": "library",
+      "root": "libs/ngrx-demo/auth/feature-login",
+      "sourceRoot": "libs/ngrx-demo/auth/feature-login/src",
+      "prefix": "ngrx-workspace",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ngrx-demo/auth/feature-login/tsconfig.lib.json",
+              "libs/ngrx-demo/auth/feature-login/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/ngrx-demo/auth/feature-login/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ngrx-demo/auth/feature-login/jest.config.js",
+            "tsConfig": "libs/ngrx-demo/auth/feature-login/tsconfig.spec.json",
+            "setupFile": "libs/ngrx-demo/auth/feature-login/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {
